@@ -47,8 +47,14 @@ p {
   text-align: center;
 }
 
-.main-display h2, h3 {
+.main-display h2 {
   text-align: center;
+ 
+}
+
+.main-display h3 {
+  text-align: center;
+
 }
 
 .main-display-more-info {
