@@ -16,10 +16,10 @@ class Search extends Component {
 
 
   handleSearch = (event) => {
-    const { getWeatherData } = this.props
+    const { getWeatherData, refreshHasClickedSearch } = this.props
     event.preventDefault();
     // need to validate input
-
+    refreshHasClickedSearch();
     getWeatherData(this.state.city, this.state.country);
 
   }

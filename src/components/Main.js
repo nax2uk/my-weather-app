@@ -4,7 +4,7 @@ import DisplayWeather from './DisplayWeather'
 import DisplayMoreInfo from './DisplayMoreInfo'
 
 class Main extends Component {
-  state = { weatherData: {} }
+  state = { weatherData: {}, hasClickedSearch: false }
 
   getWeatherData = (city, country) => {
     console.log(city);
@@ -19,16 +19,24 @@ class Main extends Component {
         console.log(response.name)
         console.log(response.sys.country)
         console.log(response.main.temp)
-        this.setState({ weatherData: response })
+        this.setState({ weatherData: response, hasClickedSearch: true })
       })
   }
 
+  refreshHasClickedSearch = () => {
+    this.setState({ hasClickedSearch: false });
+
+  }
+
   render() {
+
+    const { weatherData } = this.state;
+
     return (
       <main>
-        <Search getWeatherData={this.getWeatherData} />
-        <DisplayWeather weatherData={this.state.weatherData} />
-        <DisplayMoreInfo weatherData={this.state.weatherData} />
+        <Search getWeatherData={this.getWeatherData} refreshHasClickedSearch={this.refreshHasClickedSearch} />
+        {this.state.hasClickedSearch && <DisplayWeather weatherData={weatherData} />}
+        {this.state.hasClickedSearch && <DisplayMoreInfo lat={weatherData.coord.lat} lon={weatherData.coord.lon} city={weatherData.name} country={weatherData.sys.country} hasClickedSearch={this.state.hasClickedSearch} />}
       </main>);
   }
 }
