@@ -5,12 +5,9 @@ import getChartData from '../utils/getChartData'
 
 const DisplayTemperatureChart = (props) => {
   const { forecastedWeatherData } = props;
-  const arrTempAndDate = getChartData(forecastedWeatherData.list);
-  const { dt } = arrTempAndDate[0];
-
-  const arrTemp = arrTempAndDate.map(elem => {
-    return elem.temp;
-  })
+  const chartData = getChartData(forecastedWeatherData.list);
+  const arrTemp = chartData.arrData.map(elem => elem.temp);
+  const { startDate } = chartData;
 
   const options = {
     chart: {
@@ -34,7 +31,7 @@ const DisplayTemperatureChart = (props) => {
         label: {
           connectorAllowed: false
         },
-        pointStart: Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate(), dt.getUTCHours(), dt.getUTCMinutes()),
+        pointStart: Date.UTC(startDate.year, startDate.month, startDate.date, startDate.hour, startDate.minutes),
         pointInterval: 3 * 3600 * 1000
 
       }
@@ -42,7 +39,7 @@ const DisplayTemperatureChart = (props) => {
 
     series: [
       {
-        name: 'temp',
+        name: 'temperature',
         data: arrTemp,
 
       }

@@ -6,12 +6,9 @@ import getChartData from '../utils/getChartData'
 const DisplayWindChart = (props) => {
 
   const { forecastedWeatherData } = props;
-  const arrTempAndDate = getChartData(forecastedWeatherData.list);
-  const { dt } = arrTempAndDate[0];
-
-  const arrWind = arrTempAndDate.map(elem => {
-    return elem.wind;
-  })
+  const chartData = getChartData(forecastedWeatherData.list);
+  const arrWind = chartData.arrData.map(elem => elem.wind);
+  const { startDate } = chartData;
 
   const options = {
     chart: {
@@ -35,7 +32,7 @@ const DisplayWindChart = (props) => {
         label: {
           connectorAllowed: false
         },
-        pointStart: Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate(), dt.getUTCHours(), dt.getUTCMinutes()),
+        pointStart: Date.UTC(startDate.year, startDate.month, startDate.date, startDate.hour, startDate.minutes),
         pointInterval: 3 * 3600 * 1000
 
       }

@@ -13,8 +13,6 @@ class Search extends Component {
     city: '', country: ''
   }
 
-
-
   handleSearch = (event) => {
     const { getWeatherData, refreshHasClickedSearch } = this.props
     event.preventDefault();

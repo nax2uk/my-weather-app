@@ -1,15 +1,16 @@
-//returns an array of object {dt, temp}
+
 const getChartData = (arrDataList) => {
-  //get startdate for the data
 
-  const arrTemp = arrDataList.map(elem => {
-    const numDate = new Date(elem.dt * 1000)
+  //get startdate from the first element of the list
+  const numDate = new Date(arrDataList[0].dt * 1000)
+  const startDate = { year: numDate.getUTCFullYear(), month: numDate.getUTCMonth(), date: numDate.getUTCDate(), hour: numDate.getUTCHours(), minutes: numDate.getUTCMinutes() }
 
+  const arrData = arrDataList.map(elem => {
     return {
-      dt: numDate, temp: elem.main.temp, wind: elem.wind.speed, humidity: elem.main.humidity
+      temp: elem.main.temp, wind: elem.wind.speed, humidity: elem.main.humidity
     }
   })
-  return arrTemp;
+  return { startDate: startDate, arrData: arrData };
 }
 
 export default getChartData;

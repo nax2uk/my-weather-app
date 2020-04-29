@@ -8,10 +8,8 @@ class DisplayMoreInfo extends Component {
 
   componentDidMount() {
     const { country, city } = this.props;
-    console.log(country);
-    console.log(city);
+
     fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&units=metric&appid=b477c63b92ad8c4fbce87cf5e2eaef6d`).then(buffer => {
-      console.log(buffer);
       return buffer.json();
     }).then(response => {
       this.setState({ forecastedWeatherData: response, isLoading: false })
@@ -44,9 +42,9 @@ class DisplayMoreInfo extends Component {
     else
       return (
         <div className='main-display-more-info'>
-          <button onClick={this.handleTemperature}>Temperature Chart</button>
-          <button onClick={this.handleWind}>Wind Chart</button>
-          <button onClick={this.handleHumid}>Humidity Chart</button>
+          <button onClick={this.handleTemperature}>Temperature Forecast</button>
+          <button onClick={this.handleWind}>Wind Forecast</button>
+          <button onClick={this.handleHumid}>Humidity Forecast</button>
           {this.state.showTemperature && <DisplayTemperatureChart forecastedWeatherData={this.state.forecastedWeatherData} />}
           {this.state.showWind && <DisplayWindChart forecastedWeatherData={this.state.forecastedWeatherData} />}
           {this.state.showHumid && <DisplayHumidityChart forecastedWeatherData={this.state.forecastedWeatherData} />}

@@ -5,12 +5,9 @@ import getChartData from '../utils/getChartData'
 
 const DisplayHumidityChart = (props) => {
   const { forecastedWeatherData } = props;
-  const arrChart = getChartData(forecastedWeatherData.list);
-  const { dt } = arrChart[0];
-
-  const arrHumid = arrChart.map(elem => {
-    return elem.humidity;
-  })
+  const chartData = getChartData(forecastedWeatherData.list);
+  const arrHumid = chartData.arrData.map(elem => elem.humidity);
+  const { startDate } = chartData;
 
   const options = {
     chart: {
@@ -34,7 +31,7 @@ const DisplayHumidityChart = (props) => {
         label: {
           connectorAllowed: false
         },
-        pointStart: Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate(), dt.getUTCHours(), dt.getUTCMinutes()),
+        pointStart: Date.UTC(startDate.year, startDate.month, startDate.date, startDate.hour, startDate.minutes),
         pointInterval: 3 * 3600 * 1000
 
       }
