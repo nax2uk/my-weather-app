@@ -24,13 +24,13 @@ class Search extends Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
-    console.log({ name, value })
+
     this.setState({ [name]: value });
   }
 
   render() {
     const { city, country } = this.state;
-    console.log({ city, country });
+
     return (
       <div className="main-top">
         <form onSubmit={this.handleSearch}>
