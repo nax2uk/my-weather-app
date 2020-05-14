@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import DisplayTemperatureChart from './DisplayTemperatureChart';
 import DisplayWindChart from './DisplayWindChart';
 import DisplayHumidityChart from './DisplayHumidityChart';
+import axios from 'axios'
 
 class DisplayMoreInfo extends Component {
   state = { forecastedWeatherData: {}, isLoading: true, showTemperature: false, showWind: false, showHumid: false };
 
   componentDidMount() {
     const { country, city } = this.props;
-
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&units=metric&appid=b477c63b92ad8c4fbce87cf5e2eaef6d`).then(buffer => {
-      return buffer.json();
-    }).then(response => {
-      this.setState({ forecastedWeatherData: response, isLoading: false })
-    })
-
+    axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&units=metric&appid=b477c63b92ad8c4fbce87cf5e2eaef6d`)
+      .then(response => {
+        this.setState({ forecastedWeatherData: response.data, isLoading: false })
+      })
   }
 
   handleTemperature = () => {
