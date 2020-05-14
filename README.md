@@ -1,6 +1,6 @@
 # Weather App
 
-My Weather app is a single React.js page which shows the current weather details and also displays a 7 day forecast of the weather ahead. It fetches weather data from https://openweathermap.org/api using axios. I used CSS to style the webpage.
+My Weather app is a single React.js page which shows the current weather details and also displays a 7 day forecast of the weather ahead. It fetches weather data from [here](https://openweathermap.org/api) using axios. I used CSS to style the webpage and forecast charts are displayed with Highcharts.js.
 
 This is one of the sprints I have done as a student in Northcoders bootcamp, which was completed in a day.
 
@@ -44,6 +44,7 @@ npm start
 
 * [React](https://reactjs.org/) - A JavaScript library for building user interfaces
 * [Axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for the browser and node.js
+* [Highcharts](https://www.highcharts.com/) - Interactive JavaScript charts for your web pages
 
 ## Authors
 
