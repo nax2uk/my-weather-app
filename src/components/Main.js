@@ -8,8 +8,7 @@ class Main extends Component {
   state = { weatherData: {}, hasClickedSearch: false }
 
   getWeatherData = (city, country) => {
-    console.log(city);
-    const strURL = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&&appid=b477c63b92ad8c4fbce87cf5e2eaef6d`
+    const strURL = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&&appid=b477c63b92ad8c4fbce87cf5e2eaef6d`
     axios
       .get(strURL)
       .then(response => {

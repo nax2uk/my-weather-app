@@ -9,7 +9,7 @@ class DisplayMoreInfo extends Component {
 
   componentDidMount() {
     const { country, city } = this.props;
-    axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&units=metric&appid=b477c63b92ad8c4fbce87cf5e2eaef6d`)
+    axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&units=metric&appid=b477c63b92ad8c4fbce87cf5e2eaef6d`)
       .then(response => {
         this.setState({ forecastedWeatherData: response.data, isLoading: false })
       })
